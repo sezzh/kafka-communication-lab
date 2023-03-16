@@ -1,0 +1,22 @@
+services:
+  zookeeper:
+    image: ubuntu/zookeeper:3.1-22.04_beta
+    environment:
+      - TZ=UTC
+    ports:
+      - "2181:2181"
+  kafka:
+    image: ubuntu/kafka:3.1-22.04_beta
+    environment:
+      - TZ=UTC
+      - ZOOKEEPER_HOST=zookeeper
+    ports:
+      - "9092:9092"
+  node_backend:
+    image: node:16.15.1-bullseye-webapp
+    build:
+      context: ./
+      dockerfile: ./node-backend/Dockerfile
+    ports:
+      - "43267:3000"
+  # python_backend:
