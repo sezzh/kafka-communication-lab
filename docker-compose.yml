@@ -13,10 +13,16 @@ services:
     ports:
       - "9092:9092"
   node_backend:
-    image: node:16.15.1-bullseye-webapp
+    image: node-webapp:latest
     build:
       context: ./
       dockerfile: ./node-backend/Dockerfile
     ports:
       - "43267:3000"
-  # python_backend:
+  python_backend:
+    image: python-webapp:latest
+    build:
+      context: ./
+      dockerfile: ./python-backend/Dockerfile
+    ports:
+      - "43268:5000"
